@@ -1,8 +1,8 @@
 import os
 
-def cyk(text_file, sentence):
+def cyk(text_file, grammar):
     # BELUM DIISI DULU
-    if sentence + 3 == 0:
+    if grammar + 3 == 0:
         return 0 #ini ngasal aja biar ga error    
 
 if __name__ == 'main':
@@ -12,3 +12,6 @@ if __name__ == 'main':
         text_file = open(filename, "r")
         text_file_string = text_file.read()
         text_file.close()
+
+    #grammar dapet dari txt
+    cyk(text_file, grammar)
