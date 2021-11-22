@@ -13,7 +13,7 @@ def simulateCYK(X):
   for i in range(X):
     print(f'\tDiisi sel [0,{i}]')
   # Pengisian baris ke-1 s.d. ke-(X - 1)
-  for i in range(1, X - 1):
+  for i in range(1, X):
     # Baris ke-i memiliki kolom sebanyak X - i
     print(f'>>>> Pengisian baris ke-{i}')
     for j in range(X - i):
