@@ -21,5 +21,5 @@ Dalam proses pembuatan program dari sebuah bahasa menjadi instruksi yang dapat d
 ## How to run the program
 locate the repository folder
 1. Run python ```main.py```
-2. Input file name with the extentension (py) assuming the targete      file is in the same folder as ```main.py```
+2. Input file name with the extentension (py) assuming the target      file is in the same folder as ```main.py```
 3. That's it!
