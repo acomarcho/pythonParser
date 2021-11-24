@@ -1,2 +1,0 @@
-DEF -> def identifier ( PARAMS ) :
-PARAMS -> identifier | identifier ,

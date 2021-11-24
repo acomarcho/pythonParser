@@ -1,16 +1,68 @@
 terminals = [
-  "def",
-  "identifier",
+  "_ANY",
+  "_INTEGER",
+  "_IDENTIFIER",
+  "_EQ",
+  "_NEQ",
+  "_GE",
+  "_LE",
+  "_DIV",
+  "_CPLUS",
+  "_CMIN",
+  "_CDIVI",
+  "_CDIVF",
+  "_CMUL",
+  "_POW",
+  "_CPOW",
+  "_NEWLINE",
+  "_TRIPSQUOTE",
+  "_TRIPDQUOTE",
+  ">",
+  "<",
+  "not",
+  "and",
+  "or",
+  "True",
+  "False",
+  "'",
+  '"',
+  "[",
+  "]",
+  "{",
+  "}",
   "(",
   ")",
   ":",
   ",",
+  ".",
+  "=",
+  "+",
+  "-",
+  "/",
+  "*",
+  ':',
+  ';',
+  "if",
+  "else",
+  "elif",
+  "def",
+  "return",
+  "None",
+  "class",
+  "in",
+  "is",
+  "from",
+  "import",
+  "as",
+  "raise",
+  "with",
+  "pass",
+  "continue",
+  "break",
+  "for",
+  "while",
+  "#"
 ]
-
-# terminals = [
-#   "a",
-#   "b"
-# ]
 
 def generateCFG(filename):
   R = {}
@@ -41,6 +93,7 @@ def removeUnitProduction(R):
     i = 0
     while i < len(R[key]):
       if len(R[key][i]) == 1 and R[key][i][0] not in terminals:
+
         removedProduction = R[key].pop(i)
         if key != removedProduction[0]:
           for l in R[removedProduction[0]]:
@@ -117,10 +170,7 @@ def writeRule(filename, R):
           f.write(f'{" ".join(prods)}\n')
 
 
-R = generateCFG('toCNFplz.txt')
-print(R)
+R = generateCFG('grammar.txt')
 removeUnitProduction(R)
-print(R)
 simplifyRule(R)
-print(R)
 writeRule('generatedCNF.txt', R)
