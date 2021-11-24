@@ -5,7 +5,7 @@ def FA(s):
   '''
   # By default, set bahwa string ini diterima.
   accepted = True
-  # Apabila string kosong, tentu saja accepted.
+  # Apabila string kosong, tentu saja rejected.
   if (len(s) == 0):
     accepted = False
   else:
