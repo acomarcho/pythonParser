@@ -84,8 +84,6 @@ def cyk(grammar, tokens):
 def convertLine(l):
   # Mengonversi sebuah line yang dibaca, 'l' menjadi list of tokens.
   l = l.replace("\n", " _NEWLINE ")
-  l = l.replace('\\"', "#ESCAPE")
-  l = l.replace("\\'", "#ESCAPE")
   l = l.replace('"""', ' _TRIPDQUOTE ')
   l = l.replace("'''", " _TRIPSQUOTE ")
   l = l.replace("==", " _EQ ")
@@ -98,8 +96,9 @@ def convertLine(l):
   l = l.replace("/=", " _CDIVF ")
   l = l.replace("**=", " _CPOW ")
   l = l.replace("*=", " _CMUL ")
+  l = l.replace("%=", " _CMOD ")
   l = l.replace("//", " _DIV ")
-  l = l.replace("**", " _POW" )
+  l = l.replace("**", " _POW " )
   l = l.replace("#", "# ")
   l = l.replace("=", " = ")
   l = l.replace('(', ' ( ')
@@ -114,6 +113,11 @@ def convertLine(l):
   l = l.replace("}", " } ")
   l = l.replace(".", " . ")
   l = l.replace('"', ' " ')
+  l = l.replace('%', ' % ')
+  l = l.replace('+', ' + ')
+  l = l.replace('-', ' - ')
+  l = l.replace('/', ' / ')
+  l = l.replace('*', ' * ')
   tokens = l.split(' ')
   i = 0
   while (i < len(tokens)):

@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 terminals = [
   "_ANY",
   "_INTEGER",
@@ -12,6 +14,7 @@ terminals = [
   "_CDIVI",
   "_CDIVF",
   "_CMUL",
+  "_CMOD",
   "_POW",
   "_CPOW",
   "_NEWLINE",
@@ -61,7 +64,8 @@ terminals = [
   "break",
   "for",
   "while",
-  "#"
+  "#",
+  "%"
 ]
 
 def generateCFG(filename):
@@ -90,17 +94,16 @@ def removeUnitProduction(R):
   for key in R:
     if key == '__START_VAR__':
       continue
-    i = 0
-    while i < len(R[key]):
-      if len(R[key][i]) == 1 and R[key][i][0] not in terminals:
-
-        removedProduction = R[key].pop(i)
-        if key != removedProduction[0]:
-          for l in R[removedProduction[0]]:
-            if l != removedProduction and l not in R[key]:  # l not in R[key] untuk menghindari duplikat
-              R[key].append(l)
-      else:
-        i += 1
+    repeat = True
+    while repeat:
+      repeat = False
+      for prod in R[key]:
+        if len(prod) == 1 and prod[0] not in terminals:
+          R[key].remove(prod)
+          newProd = deepcopy([prod for prod in R[prod[0]] if prod not in R[key]])
+          R[key].extend(newProd)
+          repeat = True
+          break
 
 def getAvailableVariableName(name, R):
   while name in R or name in terminals:
